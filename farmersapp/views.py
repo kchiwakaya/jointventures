@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from farmersapp.forms import FarmerForm
 from farmersapp.models import Farmer
 #from farmersapp.forms import FarmerForm
@@ -17,6 +17,7 @@ def farmer(request,pk):
 def createFarmer(request):
     form = FarmerForm
     context = {'form':form}
+
     return render (request,'farmer_form.html',context)
 
 
