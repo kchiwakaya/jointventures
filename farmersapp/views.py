@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
 from farmersapp.forms import FarmerForm
 from farmersapp.models import Farmer
@@ -16,6 +16,11 @@ def farmer(request,pk):
 
 def createFarmer(request):
     form = FarmerForm
+    if request.method =='POST':
+        form = FarmerForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('farmers')
     context = {'form':form}
 
     return render (request,'farmer_form.html',context)
