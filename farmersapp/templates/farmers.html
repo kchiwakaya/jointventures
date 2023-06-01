@@ -1,6 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>farmers</title>
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+</head>
 {%block content%}
 <h1>The Farmers are here</h1>
+<div class="container">
+    <ul class="nav bg-info">
+      <li class="nav-item">
+        <a class="nav-link link-light" href="/">HOME</a>
+      </li>
 {%for farmer in mfarmers%}
 <p>{{farmer.name}} {{farmer.surname}}</p>
+    </ul>
 {%endfor%}
 {%endblock%}
+</html>
