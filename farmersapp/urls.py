@@ -7,4 +7,5 @@ urlpatterns = [
     path("createFarmer/",views.createFarmer,name="createfarmer"),
     path("createVenture/",views.createVenture,name="createventure"),
     path("createFarm/",views.createFarm,name="createfarm"),
-    path("ventures/",views.ventures,name="ventures"),]
+    path("ventures/",views.ventures,name="ventures"),
+    path("farms/",views.farms,name="farms"),]

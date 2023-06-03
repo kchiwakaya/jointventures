@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>farmers</title>
+  <title>farms</title>
   {% load bootstrap5 %}
   {% bootstrap_css %}
   {% bootstrap_javascript %}
 </head>
 {%block content%}
-<h1>The Farmers are here</h1>
+<h1>The Farms are here</h1>
 
 
 <table class="table table-striped-columns">
-  {%for farmer in mfarmers%}
+  {%for farm in mfarms%}
   <th></th>
   <tr>
-  <td>{{farmer.name}} {{farmer.surname}}</td>
+  <td>{{farm.farm_name}}</td>
+  <td>{{farm.extend}}</td>
 </tr>
   {%endfor%}
 </table>

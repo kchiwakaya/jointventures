@@ -35,6 +35,6 @@ class Venture(models.Model):
    farm = models.ForeignKey(Farm,on_delete = models.CASCADE)
    descripiton = models.TextField()
    supporting_images = models.CharField(max_length=250,null = True, blank=True)
-   amount = models.DecimalField(max_digits= 20,decimal_places= 4,null = True,blank = True)
+   amount = models.DecimalField(max_digits= 20,decimal_places= 2,null = True,blank = True)
    id = models.UUIDField(default=uuid.uuid1,unique=True,primary_key=True,editable=False)
 

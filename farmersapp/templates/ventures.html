@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ventures</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
 </head>
 <body>
+    {%block content%}
     <table class="table table-striped-columns">
         {%for venture in mventures%}
-        <td>venture.farm.farmer.name</td>
-        <td>venture.amount</td>
-        {%%endfor}
+        <tr>
+        <td>{{venture.farm.farmer.name}}</td>
+        </tr>
+        <td>{{venture.farm.farm_name}}</td>
+        <tr>
+        <td>{{venture.descripiton}}</td>
+        </tr>
+        <tr>
+        <td>{{venture.amount}}</td>
+        </tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        {%endfor%}
     </table>
-</body>
+    {%endblock%}
+    </body>
 </html>

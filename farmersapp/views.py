@@ -49,7 +49,12 @@ def createVenture(request):
 
 def ventures(request):
     mventures = Venture.objects.all()
-    context = {'mfarmers': mventures}
+    context = {'mventures': mventures}
     return render(request,'ventures.html',context)
+
+def farms(request):
+    mfarms = Farm.objects.all()
+    context = {'mfarms': mfarms}
+    return render(request,'farms.html',context)
 
 
