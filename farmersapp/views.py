@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
-from farmersapp.forms import FarmerForm
-from farmersapp.models import Farmer
+from farmersapp.forms import FarmForm, FarmerForm, VentureForm
+from farmersapp.models import Farmer, Venture, Farm
 #from farmersapp.forms import FarmerForm
 
 
@@ -24,5 +24,32 @@ def createFarmer(request):
     context = {'form':form}
 
     return render (request,'farmer_form.html',context)
+
+def createFarm(request):
+    form = FarmForm
+    if request.method =='POST':
+        form = FarmForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('farms')
+    context = {'form':form}
+
+    return render (request,'farm_form.html',context)
+
+def createVenture(request):
+    form = VentureForm
+    if request.method =='POST':
+        form = VentureForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('ventures')
+    context = {'form':form}
+
+    return render (request,'venture_form.html',context)
+
+def ventures(request):
+    mventures = Venture.objects.all()
+    context = {'mfarmers': mventures}
+    return render(request,'ventures.html',context)
 
 
