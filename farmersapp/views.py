@@ -35,7 +35,7 @@ def updateFarmer(request,pk):
             return redirect('farmers')
     context = {'form':form}
 
-    return render (request,'updatefarmer_form.html',context)
+    return render (request,'farmer_form.html',context)
 
 def createFarm(request):
     form = FarmForm
@@ -68,5 +68,12 @@ def farms(request):
     mfarms = Farm.objects.all()
     context = {'mfarms': mfarms}
     return render(request,'farms.html',context)
+def deleteObject(request,pk):
+    farmer = Farmer.objects.get(id = pk)
+    if request.method == 'POST':
+        farmer.delete()
+        return redirect('farmers')
+    context = {'mfarmer':farmer}
+    return render(request,'delete.html',context)
 
 
