@@ -15,8 +15,10 @@
   <th></th>
   <tr>
   <td>{{farmer.name}} {{farmer.surname}}</td>
+  <td><a href="% url 'updatefarmer' 'farmer.id'%">Edit</a></td>
 </tr>
   {%endfor%}
 </table>
 {%endblock%}
+<a href="{% url 'createfarmer'%}">Add Farmer</a>
 </html>

@@ -25,6 +25,18 @@ def createFarmer(request):
 
     return render (request,'farmer_form.html',context)
 
+def updateFarmer(request,pk):
+    farmer = Farmer.objects.get(id = pk)
+    form = FarmerForm(instance=farmer)
+    if request.method =='POST':
+        form = FarmerForm(request.POST,instance=farmer)
+        if form.is_valid():
+            form.save()
+            return redirect('farmers')
+    context = {'form':form}
+
+    return render (request,'updatefarmer_form.html',context)
+
 def createFarm(request):
     form = FarmForm
     if request.method =='POST':

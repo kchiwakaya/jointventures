@@ -16,8 +16,11 @@
   <tr>
   <td>{{farm.farm_name}}</td>
   <td>{{farm.extend}}</td>
+  <td><a href="{%url 'createfarm'%}">Edit</a></td>
+  <td><a>Delete</a></td>
 </tr>
   {%endfor%}
 </table>
+<a href = "{% url 'createfarm'%}">Add farm</a>
 {%endblock%}
 </html>
