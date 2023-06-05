@@ -9,25 +9,26 @@
 </head>
 <body>
     {%block content%}
-    <table class="table table-striped-columns">
-        {%for venture in mventures%}
-        <tr>
-        <td>{{venture.farm.farmer.name}}</td>
-        </tr>
-        <td>{{venture.farm.farm_name}}</td>
-        <tr>
-        <td>{{venture.descripiton}}</td>
-        </tr>
-        <tr>
-        <td>{{venture.amount}}</td>
-        </tr>
-        <tr></tr>
-        <tr></tr>
-        <tr></tr>
-        <tr></tr>
+        
+        <div class="row">
+            {%for venture in mventures%}
+            <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{venture.farm.farmer}}</h5>
+                <p>Amount required USD{{venture.amount}}</p>
+              <p class="card-text">{{venture.farm.farm_name}}</p>
+              <p class="card-text">{{venture.descripiton}}</p>
+              <a href="{%url 'farmer' venture.farm.farmer.id%}" class="btn btn-primary">Details</a>
+            </div>
+          </div>
+        </div>
         {%endfor%}
-    </table>
+        </div>
+          
     <a href="{%url 'createventure'%}">Add Venture</a>
-    {%endblock%}
+   
     </body>
+    {%endblock%}
 </html>
