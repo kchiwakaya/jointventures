@@ -12,14 +12,26 @@ tenure = (
    ('DG','Deed of Grant'),
    ('CCT','Certificate of Consolidated Title'),
 )
+gender = (
+   ('M','Male'),
+   ('F','Female'),
+)
+water = (
+   ('D','Dam'),
+   ('R','River'),
+   ('B','Borehole'),
+   ('W', 'Weir'),
+   ('Wl','Well'),
+   ('N','None'),
+)
 class Farmer(models.Model):
     name = models.CharField(max_length=250)
     othername = models.CharField(max_length=250,null=True, blank=True)
     surname = models.CharField(max_length=250)
     phone = models.CharField(max_length=20)
     address = models.CharField(max_length=250)
-    gender = models.CharField(max_length=10)
-    category = models.CharField(max_length=50)
+    gender = models.CharField(max_length=10,choices=gender)
+    national_id = models.CharField(max_length=30,null =True,unique=True)
     id = models.UUIDField(default=uuid.uuid1,unique=True,primary_key=True,editable=False)
 
     def __str__(self):
@@ -46,7 +58,8 @@ class Farm(models.Model):
     province = models.CharField(max_length=250,choices=province)
     ward = models.CharField(max_length=10,null=True, blank=True)
     tenure_type = models.CharField(max_length=50,choices=tenure)
-    water_availability  = models.CharField(max_length=250)
+    irrigation =models.CharField(max_length=250,null= True,default ="Do you have irrigation",choices=(('Y','Yes'),('N','No')))
+    water_availability  = models.CharField(max_length=250,choices=water)
     id = models.UUIDField(default=uuid.uuid1,unique=True,primary_key=True,editable=False)
 
     def __str__(self):
