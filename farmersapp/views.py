@@ -19,8 +19,9 @@ def createFarmer(request):
     if request.method =='POST':
         form = FarmerForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('farmers')
+            farmer = form.save(commit= False)
+            form.save(commit=False)
+            return redirect('createfarm',farmer.national_id)
     context = {'form':form}
 
     return render (request,'farmer_form.html',context)
@@ -32,27 +33,31 @@ def updateFarmer(request,pk):
         form = FarmerForm(request.POST,instance=farmer)
         if form.is_valid():
             form.save()
-            return redirect('farmers')
+            return redirect('ventures')
     context = {'form':form}
 
     return render (request,'farmer_form.html',context)
 
-def createFarm(request):
+def createFarm(request,pk):
     form = FarmForm
     if request.method =='POST':
         form = FarmForm(request.POST)
         if form.is_valid():
+            farm = form.save(commit=False)
+            farm.id = pk
             form.save()
-            return redirect('farms')
+            return redirect('createventure',farm.id)
     context = {'form':form}
 
     return render (request,'farm_form.html',context)
 
-def createVenture(request):
+def createVenture(request,pk):
     form = VentureForm
     if request.method =='POST':
         form = VentureForm(request.POST)
         if form.is_valid():
+            venture = form.save(commit=False)
+            venture.farm = pk
             form.save()
             return redirect('ventures')
     context = {'form':form}
@@ -72,7 +77,7 @@ def deleteObject(request,pk):
     farmer = Farmer.objects.get(id = pk)
     if request.method == 'POST':
         farmer.delete()
-        return redirect('farmers')
+        return redirect('ventures')
     context = {'mfarmer':farmer}
     return render(request,'delete.html',context)
 
