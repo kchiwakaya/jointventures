@@ -20,7 +20,7 @@ def createFarmer(request):
         form = FarmerForm(request.POST)
         if form.is_valid():
             farmer = form.save(commit= False)
-            form.save(commit=False)
+            form.save()
             return redirect('createfarm',farmer.national_id)
     context = {'form':form}
 
@@ -77,7 +77,7 @@ def deleteObject(request,pk):
     farmer = Farmer.objects.get(id = pk)
     if request.method == 'POST':
         farmer.delete()
-        return redirect('ventures')
+        return redirect('farmers')
     context = {'mfarmer':farmer}
     return render(request,'delete.html',context)
 
