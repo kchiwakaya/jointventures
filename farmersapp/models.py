@@ -31,9 +31,8 @@ class Farmer(models.Model):
     phone = models.CharField(max_length=20)
     address = models.CharField(max_length=250)
     gender = models.CharField(max_length=10,choices=gender)
-    national_id = models.CharField(max_length=30,null =True,unique=True)
+    national_id = models.CharField(max_length=30,null =True,unique=True,editable=True,blank=False)
     id = models.UUIDField(default=uuid.uuid1,unique=True,primary_key=True,editable=False)
-
     def __str__(self):
      return self.name +" "+ self.surname
 

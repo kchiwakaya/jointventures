@@ -1,12 +1,15 @@
 {%extends 'main.html'%}
 {%block content%}
-<h1>Farmer Form</h1>
+<h1 class="text-center">Farmer Form</h1>
 
-
-<form method="POST">
-    {%csrf_token%}
-    {{form.as_p}}
-    <input type="submit" value="confirm" />
-</form>
+<div class="text-center">
+    <div class="col-md-4">
+    <form method="POST">
+        {%csrf_token%}
+        {{form.as_p}}
+        <input type="submit" value="confirm" />
+    </form>
+</div>
+</div>
 
 {%endblock%}

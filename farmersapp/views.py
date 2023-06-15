@@ -21,19 +21,7 @@ def createFarmer(request):
         if form.is_valid():
             farmer = form.save(commit= False)
             form.save()
-            return redirect('createfarm',farmer.national_id)
-    context = {'form':form}
-
-    return render (request,'farmer_form.html',context)
-
-def updateFarmer(request,pk):
-    farmer = Farmer.objects.get(id = pk)
-    form = FarmerForm(instance=farmer)
-    if request.method =='POST':
-        form = FarmerForm(request.POST,instance=farmer)
-        if form.is_valid():
-            form.save()
-            return redirect('ventures')
+            return redirect('createfarm',farmer.id)
     context = {'form':form}
 
     return render (request,'farmer_form.html',context)
@@ -57,12 +45,24 @@ def createVenture(request,pk):
         form = VentureForm(request.POST)
         if form.is_valid():
             venture = form.save(commit=False)
-            venture.farm = pk
+            venture.farm.id = pk
             form.save()
             return redirect('ventures')
     context = {'form':form}
 
     return render (request,'venture_form.html',context)
+
+def updateFarmer(request,pk):
+    farmer = Farmer.objects.get(id = pk)
+    form = FarmerForm(instance=farmer)
+    if request.method =='POST':
+        form = FarmerForm(request.POST,instance=farmer)
+        if form.is_valid():
+            form.save()
+            return redirect('ventures')
+    context = {'form':form}
+
+    return render (request,'farmer_form.html',context)
 
 def ventures(request):
     mventures = Venture.objects.all()
