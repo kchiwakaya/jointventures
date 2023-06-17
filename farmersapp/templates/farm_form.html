@@ -9,12 +9,88 @@
 </head>
 <body>
     {%block content%}
-    <h3>Add Farm</h1>
-    <form method="POST">
-    {%csrf_token%}
-    {{form.as_p}}
-    <input type="submit" value="confirm" />
-    </form>
+    <div class="col-md-6">
+        <div class="row justify-content-center">
+    <form class="form-horizontal">
+    
+        {% csrf_token %}
+        <h2 class="row justify-content-center">Farm Details</h2>
+       
+      
+        <div class="form-group">
+          <label for="farm_name" class="col-sm-2 control-label">Farm Name</label>
+          <div class="col-sm-10">
+            {{ form.farm_name }}
+          </div>
+        </div>
+      
+        <div class="form-group">
+          <label for="plot_number" class="col-sm-2 control-label">Plot Number</label>
+          <div class="col-sm-10">
+            {{ form.plot_number }}
+          </div>
+        </div>
+      
+        <div class="form-group">
+          <label for="extend" class="col-sm-2 control-label">Extend</label>
+          <div class="col-sm-10">
+            {{ form.extend }}
+          </div>
+        </div>
+      
+        <div class="form-group">
+          <label for="district" class="col-sm-2 control-label">District</label>
+          <div class="col-sm-10">
+            {{ form.district }}
+          </div>
+        </div>
+      
+        <div class="form-group">
+          <label for="province" class="col-sm-2 control-label">Province</label>
+          <div class="col-sm-10">
+            {{ form.province }}
+          </div>
+        </div>
+      
+        <div class="form-group">
+          <label for="ward" class="col-sm-2 control-label">Ward</label>
+          <div class="col-sm-10">
+            {{ form.ward }}
+          </div>
+        </div>
+      
+        <div class="form-group">
+          <label for="tenure_type" class="col-sm-2 control-label">Tenure Type</label>
+          <div class="col-sm-10">
+            {{ form.tenure_type }}
+          </div>
+        </div>
+      
+        <div class="form-group">
+          <label for="irrigation" class="col-sm-2 control-label">Irrigation</label>
+          <div class="col-sm-10">
+            {{ form.irrigation }}
+          </div>
+        </div>
+      
+        <div class="form-group">
+          <label for="water_availability" class="col-sm-2 control-label">Water Availability</label>
+          <div class="col-sm-10">
+            {{ form.water_availability }}
+          </div>
+        </div>
+        <p></p>
+      
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">Next</button>
+          </div>
+        </div>
+      </div>
+
+      </form>
+    </div>
+  </div>
 
     {%endblock%}
 </body>
