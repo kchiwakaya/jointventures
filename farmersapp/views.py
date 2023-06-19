@@ -28,24 +28,27 @@ def createFarmer(request):
 
 def createFarm(request,pk):
     form = FarmForm
+    farmer = Farmer.objects.get(id = pk)
     if request.method =='POST':
         form = FarmForm(request.POST)
         if form.is_valid():
             farm = form.save(commit=False)
-            farm.id = pk
+            farm.farmer = farmer
             form.save()
             return redirect('createventure',farm.id)
+            
     context = {'form':form}
 
     return render (request,'farm_form.html',context)
 
 def createVenture(request,pk):
     form = VentureForm
+    farm = Farm.objects.get(id = pk)
     if request.method =='POST':
         form = VentureForm(request.POST)
         if form.is_valid():
             venture = form.save(commit=False)
-            venture.farm.id = pk
+            venture.farm = farm
             form.save()
             return redirect('ventures')
     context = {'form':form}

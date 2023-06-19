@@ -21,8 +21,8 @@ class FarmForm(forms.ModelForm):
     class Meta:
         model = Farm
         fields = ('farm_name','plot_number','extend','district',
-                  'province','ward','tenure_type','irrigation','water_availability')
-       
+                  'province','ward','tenure_type','irrigation','water_availability','description')
+        
         widgets = {
             'farm_name':forms.TextInput(attrs={'class':'form-control'}),
             'plot_number':forms.TextInput(attrs={'class':'form-control'}),
@@ -33,8 +33,10 @@ class FarmForm(forms.ModelForm):
             'tenure_type':forms.Select(attrs={'class':'form-control'}),
             'irrigation':forms.Select(attrs={'class':'form-control'}),
             'water_availability': forms.Select(attrs={'class':'form-control'}),
+            'description': forms.Textarea(attrs={'class':'form-control'}),
 
         }
+        
       
 class VentureForm(forms.ModelForm):
     class Meta:

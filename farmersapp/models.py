@@ -1,4 +1,5 @@
-from django.db import models
+
+from django.db import IntegrityError, models
 import uuid
 
 # Create your models here.
@@ -61,6 +62,7 @@ class Farm(models.Model):
     tenure_type = models.CharField(max_length=50,choices=tenure)
     irrigation =models.CharField(max_length=250,null= True,choices=(('Y','Yes'),('N','No')))
     water_availability  = models.CharField(max_length=250,choices=water)
+    description = models.TextField(null=True, blank=True)
     id = models.UUIDField(default=uuid.uuid1,unique=True,primary_key=True,editable=False)
 
     def __str__(self):
@@ -69,7 +71,9 @@ class Farm(models.Model):
 class Venture(models.Model):
    farm = models.ForeignKey(Farm,on_delete = models.CASCADE)
    descripiton = models.TextField()
+   takenup = models.CharField(max_length=5,null=True,choices=(('Y','Yes'),('N','No')),blank=True)
    supporting_images = models.CharField(max_length=250,null = True, blank=True)
    amount = models.DecimalField(max_digits= 20,decimal_places= 2,null = True,blank = True)
    id = models.UUIDField(default=uuid.uuid1,unique=True,primary_key=True,editable=False)
+
 
