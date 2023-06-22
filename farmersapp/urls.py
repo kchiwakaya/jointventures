@@ -10,5 +10,6 @@ urlpatterns = [
     path("",views.ventures,name="ventures"),
     path("farms/",views.farms,name="farms"),
     path("updateFarmer/<str:pk>/",views.updateFarmer,name="updatefarmer"),
-    path("deleteObject/<str:pk>/",views.deleteObject,name ="deletefarmer")
+    path("deleteObject/<str:pk>/",views.deleteObject,name ="deletefarmer"),
+    path("details/<str:pk>/",views.details,name ="details"),
     ]

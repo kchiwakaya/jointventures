@@ -72,10 +72,16 @@ def ventures(request):
     context = {'mventures': mventures}
     return render(request,'ventures.html',context)
 
+def details(request,pk):
+    mdetails = Venture.objects.get(id = pk)
+    context = {'mdetails': mdetails}
+    return render(request,'details.html',context)
+
 def farms(request):
     mfarms = Farm.objects.all()
     context = {'mfarms': mfarms}
     return render(request,'farms.html',context)
+
 def deleteObject(request,pk):
     farmer = Farmer.objects.get(id = pk)
     if request.method == 'POST':
