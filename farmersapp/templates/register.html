@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+    {%include 'messages.html'%}
     <form method="post" action="{url 'register'}">
         {%csrf_token%}
         {{form.as_p}}

@@ -12,8 +12,9 @@ class Farmer(models.Model):
     name = models.CharField(max_length=250)
     othername = models.CharField(max_length=250,null=True, blank=True)
     surname = models.CharField(max_length=250)
-    phone = models.CharField(max_length=20)
     address = models.CharField(max_length=250)
+    phone = models.CharField(max_length=20)
+    email = models.CharField(max_length=250, null=True,blank=True)
     gender = models.CharField(max_length=10,choices=gender)
     national_id = models.CharField(max_length=30,null =True,unique=True,editable=True,blank=False)
     id = models.UUIDField(default=uuid.uuid1,unique=True,primary_key=True,editable=False)
@@ -30,6 +31,7 @@ class Farm(models.Model):
    ('Ttl','Title Deed'),
    ('DG','Deed of Grant'),
    ('CCT','Certificate of Consolidated Title'),
+   ('Non','None'),
    )
 
     water = (
@@ -52,6 +54,14 @@ class Farm(models.Model):
     ('HRE','Harare'),
     ('BYO','Bulawayo'),
    )
+    mmodels = (
+       ('A1','A1'),
+       ('A2','A2'),
+       ('Old','Old Resettlement Scheme'),
+       ('Sma','Small Scale Commercial'),
+       ('A1T','Three Tier'),
+       ('Comm','Communal')
+    )
     farmer = models.ForeignKey(Farmer,on_delete = models.CASCADE)
     farm_name = models.CharField(max_length=500)
     plot_number = models.CharField(max_length=250,null=True, blank=True)
@@ -59,6 +69,7 @@ class Farm(models.Model):
     district = models.CharField(max_length=20)
     province = models.CharField(max_length=250,choices=province)
     ward = models.CharField(max_length=10,null=True, blank=True)
+    model =models.CharField(max_length=250,null =True,blank=True,choices=mmodels)
     tenure_type = models.CharField(max_length=50,choices=tenure)
     irrigation =models.CharField(max_length=250,null= True,choices=(('Y','Yes'),('N','No')))
     water_availability  = models.CharField(max_length=250,choices=water)
@@ -70,6 +81,7 @@ class Farm(models.Model):
 
 class Venture(models.Model):
    farm = models.ForeignKey(Farm,on_delete = models.CASCADE)
+   purpose = models.CharField(max_length=500,null = True,blank = True)
    descripiton = models.TextField()
    takenup = models.CharField(max_length=5,null=True,choices=(('Y','Yes'),('N','No')),blank=True)
    supporting_images = models.CharField(max_length=250,null = True, blank=True)
