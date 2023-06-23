@@ -12,4 +12,5 @@ urlpatterns = [
     path("updateFarmer/<str:pk>/",views.updateFarmer,name="updatefarmer"),
     path("deleteObject/<str:pk>/",views.deleteObject,name ="deletefarmer"),
     path("details/<str:pk>/",views.details,name ="details"),
+    path("register/",views.register,name ="register"),
     ]

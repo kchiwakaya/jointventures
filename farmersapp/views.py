@@ -2,10 +2,16 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
 from farmersapp.forms import FarmForm, FarmerForm, VentureForm
 from farmersapp.models import Farmer, Venture, Farm
+from django.contrib.auth.forms import UserCreationForm
 #from farmersapp.forms import FarmerForm
 
 
 # Create your views here.
+def register(request):
+    page = 'register'
+    form = UserCreationForm()
+    context = {'page':page,'form':form}
+    return render (request,'register.html',context)
 def farmers(request):
     mfarmers = Farmer.objects.all()
     context = {'mfarmers': mfarmers}
