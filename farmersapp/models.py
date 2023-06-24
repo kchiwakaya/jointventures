@@ -85,7 +85,10 @@ class Venture(models.Model):
    descripiton = models.TextField()
    takenup = models.CharField(max_length=5,null=True,choices=(('Y','Yes'),('N','No')),blank=True)
    supporting_images = models.CharField(max_length=250,null = True, blank=True)
+   period = models.DecimalField(max_digits= 10,decimal_places= 2,null=True,blank=True)
+   period_type = models.CharField(max_length=5,null=True,choices=(('Y','Year(s)'),('M','Months'),('W','Weeks')),blank=True)
    amount = models.DecimalField(max_digits= 20,decimal_places= 2,null = True,blank = True)
+   negotiable = models.CharField(max_length=250,null = True, blank=True)
    id = models.UUIDField(default=uuid.uuid1,unique=True,primary_key=True,editable=False)
 
 

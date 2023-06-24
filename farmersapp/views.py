@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from farmersapp.forms import FarmForm, FarmerForm, VentureForm
 from farmersapp.models import Farmer, Venture, Farm
 from users.forms import CustomUserCreationForm
+from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 #from django.contrib.auth.forms import UserCreationForm
 #from farmersapp.forms import FarmerForm
@@ -20,10 +21,10 @@ def register(request):
             user.username = user.username.lower()
             user.save()
             messages.success(request,'User account created')
-            #login(request,user)
-            return redirect(ventures)
+            login(request,user)
+            return redirect('ventures')
         else:
-            messages.error(request,"error occurred")
+            messages.error(request,'error occurred')
     context = {'page':page,'form':form}
     return render (request,'register.html',context)
 
