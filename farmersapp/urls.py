@@ -13,4 +13,5 @@ urlpatterns = [
     path("deleteObject/<str:pk>/",views.deleteObject,name ="deletefarmer"),
     path("details/<str:pk>/",views.details,name ="details"),
     path("register/",views.register,name ="register"),
+    path("logout/", views.logout_user, name="logout"),
     ]
