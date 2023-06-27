@@ -1,3 +1,4 @@
+from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
 from farmersapp.forms import FarmForm, FarmerForm, VentureForm
@@ -32,6 +33,20 @@ def logout_user(request):
     logout(request)
     messages.success(request, "You Have Been Logged Out...")
     return redirect('ventures')
+
+def login_user(request, template_name='login.html'):
+    """Login view."""
+    form = AuthenticationForm(request)
+    if form.is_valid():
+        # Authenticate the user.
+        user = authenticate(username=form.cleaned_data['username'],
+                            password=form.cleaned_data['password'])
+        if user is not None:
+            # Login the user.
+            login(request, user)
+            return redirect(request.GET.get('next', '/'))
+
+    return render(request, template_name, {'form': form})
 
 
 def farmers(request):
