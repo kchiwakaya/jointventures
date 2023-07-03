@@ -2,6 +2,8 @@
 from django.db import IntegrityError, models
 import uuid
 
+from django.contrib.auth.models import User
+
 # Create your models here.
 
 class Farmer(models.Model):
@@ -9,6 +11,7 @@ class Farmer(models.Model):
    ('M','Male'),
    ('F','Female'),
    )
+    user = models.OneToOneField(User,on_delete=models.CASCADE,null =True,blank = True)
     name = models.CharField(max_length=250)
     othername = models.CharField(max_length=250,null=True, blank=True)
     surname = models.CharField(max_length=250)

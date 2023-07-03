@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
 from farmersapp.forms import FarmForm, FarmerForm, VentureForm
 from farmersapp.models import Farmer, Venture, Farm
-from users.forms import CustomUserCreationForm
+from users.forms import CustomUserCreationForm, CustomLoginForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 #from django.contrib.auth.forms import UserCreationForm
@@ -36,10 +36,10 @@ def logout_user(request):
 
 def login_user(request, template_name='login.html'):
     """Login view."""
-    form = AuthenticationForm(request)
+    form = CustomLoginForm(request.POST)
     if form.is_valid():
         # Authenticate the user.
-        user = authenticate(username=form.cleaned_data['username'],
+        user = authenticate(username=form.cleaned_data['email'],
                             password=form.cleaned_data['password'])
         if user is not None:
             # Login the user.
