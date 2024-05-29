@@ -41,7 +41,7 @@ def login_user(request, template_name='login.html'):
     form = CustomLoginForm(request.POST)
     if form.is_valid():
         # Authenticate the user.
-        user = authenticate(username=form.cleaned_data['email'],
+        user = authenticate(username=form.cleaned_data['username'],
                             password=form.cleaned_data['password'])
         if user is not None:
             # Login the user.
