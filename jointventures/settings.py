@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
+LOGIN_URL ='login'
 # Application definition
 
 INSTALLED_APPS = [
@@ -124,6 +124,7 @@ STATIC_URL = "static/"
 STATICFILES_DIRS = [
     BASE_DIR/'static'
 ]
+#STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'static/images')
 

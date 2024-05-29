@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
-    {% load bootstrap5 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-</head>
-<body>
+    {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
+  </head>
+  <body>
     {%include 'navbar.html'%}
-    <br/>
-    
-    <div class="container">
-        {%block content%}
-        
+    <br />
 
-        
+    <div class="container">{%block content%} {%endblock content%}</div>
 
-        {%endblock content%}
-    </div>
-   
-    
-</body>
+    <footer id="footer" class="footer">
+      <div class="container copyright text-center mt-4">
+        <p>
+          © <span>Copyright</span>
+          <strong class="px-1 sitename">Kevin Chiwakaya</strong>
+          <span>All Rights Reserved</span>
+        </p>
+        <div class="credits">
+          Designed by <a href="https://whatsapp.com/">0775291575</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

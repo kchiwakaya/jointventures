@@ -1,37 +1,35 @@
 {%extends 'main.html'%}
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <title>Ventures</title>
-    {% load bootstrap5 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
+    {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %} 
     {%load static%}
-</head>
-<body>
+  </head>
+  <body>
     {%block content%}
-        
-        <div class="row">
-            {%for venture in mventures%}
-            <div class="col-md-3">
-        <div class="card" data-aos="fade-up" style="width: 18rem;">
-            <img class="card-img-top" src="{%static 'images/pexels-jannis-knorr-2933243.jpg'%}"Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">{{venture.farm.farmer}}</h5>
-                <p>Amount required USD{{venture.amount}}</p>
-              <p class="card-text">{{venture.farm.farm_name}}</p>
-              <p class="card-text">{{venture.descripiton}}</p>
-              <p class="card-text">{{venture.farm.tenure_type}}</p>
-              <a href="{%url 'details' venture.id%}" class="btn btn-primary">Details</a>
-            </div>
+
+    <div class="row">
+      {%for venture in mventures%}
+      <div class="col-md-3">
+        <div class="card" data-aos="fade-up" style="width: 18rem">
+          <img class="card-img-top" src="{% static 'images/pexels-jannis-knorr-2933243.jpg'%}"/>
+          <div class="card-body">
+            <h5 class="card-title">{{venture.farm.farmer}}</h5>
+            <p>Amount required USD{{venture.amount}}</p>
+            <p class="card-text">{{venture.farm.farm_name}}</p>
+            <p class="card-text">{{venture.descripiton}}</p>
+            <p class="card-text">{{venture.farm.tenure_type}}</p>
+            <a href="{%url 'details' venture.id%}" class="btn btn-primary"
+              >Details</a
+            >
           </div>
         </div>
-        
-        {%endfor%}
-        </div>
-          
-    <a href="{%url 'createfarmer'%}">Add Venture</a>
-   
-    </body>
-    {%endblock%}
+      </div>
+      {%endfor%}
+    </div>
+  </br>
+    <a class="btn btn-success" href="{%url 'createfarmer'%}">Post Venture</a>
+  </body>
+  {%endblock%}
 </html>

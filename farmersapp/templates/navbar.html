@@ -15,14 +15,14 @@
             <a class="nav-link" href="#">Private Land</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{%url 'createfarmer'%}" >Seek Venture</a>
+            <a class="nav-link" href="{%url 'createfarmer'%}" >Post Venture</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Province
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Mashonaland East</a></li>
+              <li><a class="dropdown-item province" name="province" href="{%url '_ventures' 'MSE'%}">Mashonaland East</a></li>
               <li><a class="dropdown-item" href="#">Mashonaland West</a></li>
               <li><a class="dropdown-item" href="#">Mashonaland Central</a></li>
               <li><a class="dropdown-item" href="#">Matabeleland South</a></li>
@@ -36,8 +36,8 @@
           </li>
           <li>___________________</li>
         <li  class="nav-item">
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="d-flex" role="search" method="get" action ="{% url 'ventures'%}">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="Search_Query" value={{search_query}}>
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
       </li>

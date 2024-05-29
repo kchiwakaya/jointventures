@@ -8,6 +8,7 @@ urlpatterns = [
     path("createVenture/<str:pk>/",views.createVenture,name="createventure"),
     path("createFarm/<str:pk>/",views.createFarm,name="createfarm"),
     path("",views.ventures,name="ventures"),
+    path("ventures/<str:pk>/",views.venturesProv,name="_ventures"),
     path("farms/",views.farms,name="farms"),
     path("updateFarmer/<str:pk>/",views.updateFarmer,name="updatefarmer"),
     path("deleteObject/<str:pk>/",views.deleteObject,name ="deletefarmer"),

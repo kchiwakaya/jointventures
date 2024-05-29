@@ -1,31 +1,26 @@
 {%extends 'main.html'%}
 <!DOCTYPE html>
 <html>
-<head>
-  <title>farmers</title>
-  {% load bootstrap5 %}
-  {% bootstrap_css %}
-  {% bootstrap_javascript %}
+  <head>
+    <title>farmers</title>
+    {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
+  </head>
 
-</head>
+  {%block content%}
 
-{%block content%}
+  <h1>The Farmers are here</h1>
 
-
-<h1>The Farmers are here</h1>
-
-
-<table class="table table-striped-columns">
-  {%for farmer in mfarmers%}
-  <th></th>
-  <tr>
-  <td>{{farmer.name}} {{farmer.surname}}</td>
-  <td><a href="{% url 'updatefarmer' farmer.id %}">Edit</a></td>
-  <td><a href="{% url 'deletefarmer' farmer.id %}">Delete</a></td>
-</tr>
-  {%endfor%}
-</table>
-<a href="{% url 'createfarmer'%}">Add Farmer</a>
+  <table class="table table-striped-columns">
+    {%for farmer in mfarmers%}
+    <th></th>
+    <tr>
+      <td>{{farmer.name}} {{farmer.surname}}</td>
+      <td><a href="{% url 'updatefarmer' farmer.id %}">Edit</a></td>
+      <td><a href="{% url 'deletefarmer' farmer.id %}">Delete</a></td>
+    </tr>
+    {%endfor%}
+  </table>
+  <a class="btn-getstarted" href="{% url 'createfarmer'%}">Add Farmer</a>
 </html>
-{%endblock%}
 
+{%endblock%}

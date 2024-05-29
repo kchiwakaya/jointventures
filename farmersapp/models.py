@@ -94,4 +94,8 @@ class Venture(models.Model):
    negotiable = models.CharField(max_length=250,null = True, blank=True)
    id = models.UUIDField(default=uuid.uuid1,unique=True,primary_key=True,editable=False)
 
+   def __str__(self):
+       return self.farm.farmer.name
+   
+
 

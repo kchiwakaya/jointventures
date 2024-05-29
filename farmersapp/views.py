@@ -1,11 +1,13 @@
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import redirect, render
+from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect
 from farmersapp.forms import FarmForm, FarmerForm, VentureForm
 from farmersapp.models import Farmer, Venture, Farm
 from users.forms import CustomUserCreationForm, CustomLoginForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 #from django.contrib.auth.forms import UserCreationForm
 #from farmersapp.forms import FarmerForm
 
@@ -23,7 +25,7 @@ def register(request):
             user.save()
             messages.success(request,'User account created')
             login(request,user)
-            return redirect('ventures')
+            return redirect('createfarmer')
         else:
             messages.error(request,'error occurred')
     context = {'page':page,'form':form}
@@ -48,15 +50,15 @@ def login_user(request, template_name='login.html'):
 
     return render(request, template_name, {'form': form})
 
-
+@login_required
 def farmers(request):
     mfarmers = Farmer.objects.all()
     context = {'mfarmers': mfarmers}
     return render(request,'farmers.html',context)
-
+@login_required
 def farmer(request,pk):
    return render(request,'signle-farmer.html')
-
+@login_required
 def createFarmer(request):
     form = FarmerForm
     if request.method =='POST':
@@ -68,7 +70,7 @@ def createFarmer(request):
     context = {'form':form}
 
     return render (request,'farmer_form.html',context)
-
+@login_required
 def createFarm(request,pk):
     form = FarmForm
     farmer = Farmer.objects.get(id = pk)
@@ -83,7 +85,7 @@ def createFarm(request,pk):
     context = {'form':form}
 
     return render (request,'farm_form.html',context)
-
+@login_required
 def createVenture(request,pk):
     form = VentureForm
     farm = Farm.objects.get(id = pk)
@@ -97,7 +99,7 @@ def createVenture(request,pk):
     context = {'form':form}
 
     return render (request,'venture_form.html',context)
-
+@login_required
 def updateFarmer(request,pk):
     farmer = Farmer.objects.get(id = pk)
     form = FarmerForm(instance=farmer)
@@ -109,22 +111,34 @@ def updateFarmer(request,pk):
     context = {'form':form}
 
     return render (request,'farmer_form.html',context)
+def venturesProv(request,pk):
+    ventures = Ventures.objects.filter(farm__province=pk)
+    print(ventures)
+    context = {'mventures': ventures}
+    return render(request,'ventures.html',context)
 
 def ventures(request):
-    mventures = Venture.objects.all()
-    context = {'mventures': mventures}
+    search_query = request.GET.get('province')
+    print(search_query)
+    filtered_data =''
+    if search_query:
+        filtered_data = Venture.objects.filter(farm_province = search_query)
+    else:
+        filtered_data = Venture.objects.all()
+    #mventures = Venture.objects.filter(filtered_data)
+    context = {'mventures': filtered_data}
     return render(request,'ventures.html',context)
 
 def details(request,pk):
     mdetails = Venture.objects.get(id = pk)
     context = {'mdetails': mdetails}
     return render(request,'details.html',context)
-
+@login_required
 def farms(request):
     mfarms = Farm.objects.all()
     context = {'mfarms': mfarms}
     return render(request,'farms.html',context)
-
+@login_required
 def deleteObject(request,pk):
     farmer = Farmer.objects.get(id = pk)
     if request.method == 'POST':
