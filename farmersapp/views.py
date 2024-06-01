@@ -30,7 +30,7 @@ def register(request):
             messages.error(request,'error occurred')
     context = {'page':page,'form':form}
     return render (request,'register.html',context)
-
+@login_required
 def logout_user(request):
     logout(request)
     messages.success(request, "You Have Been Logged Out...")
@@ -47,7 +47,7 @@ def login_user(request, template_name='login.html'):
             # Login the user.
             login(request, user)
             return redirect(request.GET.get('next', '/'))
-
+    print("form not valid")
     return render(request, template_name, {'form': form})
 
 @login_required
@@ -65,10 +65,11 @@ def createFarmer(request):
         form = FarmerForm(request.POST)
         if form.is_valid():
             farmer = form.save(commit= False)
+            farmer.user = request.user
             form.save()
             return redirect('createfarm',farmer.id)
+            
     context = {'form':form}
-
     return render (request,'farmer_form.html',context)
 @login_required
 def createFarm(request,pk):
@@ -112,7 +113,7 @@ def updateFarmer(request,pk):
 
     return render (request,'farmer_form.html',context)
 def venturesProv(request,pk):
-    ventures = Ventures.objects.filter(farm__province=pk)
+    ventures = Venture.objects.filter(farm__province=pk)
     print(ventures)
     context = {'mventures': ventures}
     return render(request,'ventures.html',context)

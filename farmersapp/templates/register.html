@@ -10,6 +10,7 @@
     {%include 'messages.html'%} {% block content %}
 
     <section class="vh-100" style="background-color: #415950">
+      {% csrf_token %}
       <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col col-xl-10">
@@ -46,6 +47,10 @@
                       >
                         Register your account
                       </h5>
+
+                      <div data-mdb-input-init class="form-outline mb-4">
+                        {{ form.username }}
+                      </div>
 
                       <div data-mdb-input-init class="form-outline mb-4">
                         {{ form.email }}
