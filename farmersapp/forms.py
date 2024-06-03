@@ -7,13 +7,13 @@ class FarmerForm(forms.ModelForm):
         fields = ('name','othername','surname','phone','address','gender','national_id')
 
         widgets = {
-            'name':forms.TextInput(attrs={'class':'form-control'}),
-            'othername':forms.TextInput(attrs={'class':'form-control'}),
-            'surname':forms.TextInput(attrs={'class':'form-control'}),
-            'phone':forms.TextInput(attrs={'class':'form-control'}),
-            'address':forms.TextInput(attrs={'class':'form-control'}),
-            'gender':forms.Select(attrs={'class':'form-control'}),
-            'national_id':forms.TextInput(attrs={'class':'form-control'})
+            'name':forms.TextInput(attrs={'class':'form-control','place_holder':'Name'}),
+            'othername':forms.TextInput(attrs={'class':'form-control','place_holder':'Other Name'}),
+            'surname':forms.TextInput(attrs={'class':'form-control','place_holder':'Surname'}),
+            'phone':forms.TextInput(attrs={'class':'form-control','place_holder':'Phone'}),
+            'address':forms.TextInput(attrs={'class':'form-control','place_holder':'Address'}),
+            'gender':forms.Select(attrs={'class':'form-control','place_holder':'Gender'}),
+            'national_id':forms.TextInput(attrs={'class':'form-control','place_holder':'National ID'})
         }
 
 

@@ -33,7 +33,8 @@ class CustomLoginForm(UserCreationForm):
         model = User
         fields = ['username','password']
 
-    username = forms.CharField(label="", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}), label="")
+        widgets = {'username':forms.TextInput(attrs={'class':'form-control','placeholder': 'Username'}),
+       'password':forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}),
+        }
 
    

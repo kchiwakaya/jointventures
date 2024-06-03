@@ -20,55 +20,56 @@
                   <h3 class="mb-5 text-uppercase">Farmer registration form</h3>
   
                   <form class="form-horizontal">
+                    {%include 'errors.html'%}
                     {% csrf_token %}
                   
                     <div class="form-group">
                       <label for="farmer" class="col-sm-2 control-label">Name</label>
-                      <div class="form-control">
+                     
                         {{ form.name }}
-                      </div>
+                    
                     </div>
                   
                     <div class="form-group">
-                      <label for="farm_name" class="col-sm-2 control-label">Othername</label>
-                      <div class="form-control">
+                      <label for="farm_name" class="col-sm-2 control-label">Other Name</label>
+                     
                         {{ form.othername }}
-                      </div>
+                      
                     </div>
                   
                     <div class="form-group">
                       <label for="plot_number" class="col-sm-2 control-label">Surname</label>
-                      <div class="form-control">
+                     
                         {{ form.surname }}
-                      </div>
+                     
                     </div>
                   
                     <div class="form-group">
                       <label for="extend" class="col-sm-2 control-label">Phone</label>
-                      <div class="form-control">
+                    
                         {{ form.phone }}
-                      </div>
+                      
                     </div>
                   
                     <div class="form-group">
                       <label for="district" class="col-sm-2 control-label">Address</label>
-                      <div class="form-control">
+                     
                         {{ form.address }}
-                      </div>
+                    
                     </div>
                   
                     <div class="form-group">
                       <label for="province" class="col-sm-2 control-label">Gender</label>
-                      <div class="form-control">
+                      
                         {{form.gender}}
-                      </div>
+                      
                     </div>
                   
                     <div class="form-group">
                       <label for="ward" class="col-sm-2 control-label">National ID</label>
-                      <div class="form-control">
+                      
                         {{ form.national_id }}
-                      </div>
+                   
                     </div>
                   
                    

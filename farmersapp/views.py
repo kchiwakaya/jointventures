@@ -8,6 +8,7 @@ from users.forms import CustomUserCreationForm, CustomLoginForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 #from django.contrib.auth.forms import UserCreationForm
 #from farmersapp.forms import FarmerForm
 
@@ -38,17 +39,29 @@ def logout_user(request):
 
 def login_user(request, template_name='login.html'):
     """Login view."""
-    form = CustomLoginForm(request.POST)
-    if form.is_valid():
-        # Authenticate the user.
-        user = authenticate(username=form.cleaned_data['username'],
-                            password=form.cleaned_data['password'])
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        try:
+            user = User.objects.get(username = username)
+        except Exception as e:
+            print('Username does not exist',e)
+            print(username)
+        print("before auth")
+        user = authenticate(username='username',
+                            password='password')
+        print("after auth",user)
         if user is not None:
             # Login the user.
+            print("user exists")
             login(request, user)
-            return redirect(request.GET.get('next', '/'))
-    print("form not valid")
-    return render(request, template_name, {'form': form})
+            if (request.GET.get('next', '/')):
+                return redirect(request.GET.get('next', '/'))
+            else:
+                return redirect('ventures')
+        print("not sure what happened")
+    return render(request, template_name)
 
 @login_required
 def farmers(request):

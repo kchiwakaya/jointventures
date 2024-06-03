@@ -76,7 +76,6 @@ class Farm(models.Model):
     irrigation =models.CharField(max_length=250,null= True,choices=(('Y','Yes'),('N','No')))
     water_availability  = models.CharField(max_length=250,choices=water)
     description = models.TextField(null=True, blank=True)
-    id = models.UUIDField(default=uuid.uuid1,unique=True,primary_key=True,editable=False)
 
     def __str__(self):
      return self.farm_name
@@ -91,7 +90,7 @@ class Venture(models.Model):
    period_type = models.CharField(max_length=5,null=True,choices=(('Y','Year(s)'),('M','Months'),('W','Weeks')),blank=True)
    amount = models.DecimalField(max_digits= 20,decimal_places= 2,null = True,blank = True)
    negotiable = models.CharField(max_length=250,null = True, blank=True)
-   id = models.UUIDField(default=uuid.uuid1,unique=True,primary_key=True,editable=False)
+  
 
    def __str__(self):
        return self.farm.farmer.name

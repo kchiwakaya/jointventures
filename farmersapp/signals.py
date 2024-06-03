@@ -9,8 +9,7 @@ def createFarmer(sender,instance,created,**kwargs):
         user = instance
         farmer = Farmer.objects.create(
             user = user,
-            email = user.email,
-            name = user.username
+            email = user.email
         )
 @receiver(post_delete,sender = Farmer)
 def deleteFarmer(sender,instance,**kwargs):
