@@ -47,20 +47,16 @@ def login_user(request, template_name='login.html'):
             user = User.objects.get(username = _username)
         except Exception as e:
             print('Username does not exist',e)
-            print(_username)
         print(password)
         user = authenticate(username=_username,
                             password=password)
-        print("after auth",user)
         if user is not None:
             # Login the user.
-            print("user exists")
             login(request, user)
             if (request.GET.get('next', '/')):
                 return redirect(request.GET.get('next', '/'))
             else:
                 return redirect('ventures')
-        print("not sure what happened")
     return render(request, template_name)
 
 @login_required
@@ -126,7 +122,13 @@ def updateFarmer(request,pk):
 
     return render (request,'farmer_form.html',context)
 def venturesProv(request,pk):
-    ventures = Venture.objects.filter(farm__province=pk)
+    if pk =='PVT':
+        cct = Q(farm__tenure_type = 'CCT' )#consolidated title
+        title = Q(farm__tenure_type = 'Ttl' )#Title Deed
+        dg = Q(farm__tenure_type = 'DG' )#Deed of grant
+        ventures = Venture.objects.filter(cct|title|dg)
+    else:
+        ventures = Venture.objects.filter(farm__province=pk)
     print(ventures)
     context = {'mventures': ventures}
     return render(request,'ventures.html',context)
