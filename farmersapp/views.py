@@ -40,17 +40,17 @@ def logout_user(request):
 def login_user(request, template_name='login.html'):
     """Login view."""
     if request.method == 'POST':
-        username = request.POST['username']
+        _username = request.POST['username']
         password = request.POST['password']
 
         try:
-            user = User.objects.get(username = username)
+            user = User.objects.get(username = _username)
         except Exception as e:
             print('Username does not exist',e)
-            print(username)
-        print("before auth")
-        user = authenticate(username='username',
-                            password='password')
+            print(_username)
+        print(password)
+        user = authenticate(username=_username,
+                            password=password)
         print("after auth",user)
         if user is not None:
             # Login the user.
