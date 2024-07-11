@@ -13,7 +13,7 @@
       {%for venture in mventures%}
       <div class="col-md-3">
       
-        <div class="card" data-aos="fade-up" style="width: 18rem">
+        <div class="card p-2" data-aos="fade-up" style="width: 18rem">
           <a href="{%url 'details' venture.id%}">
           <img class="card-img-top" src="{% static 'images/pexels-jannis-knorr-2933243.jpg'%}"/>
           </a>
@@ -22,7 +22,7 @@
             <p>Amount required USD{{venture.amount}}</p>
             <p class="card-text">{{venture.farm.farm_name}}</p>
             <p class="card-text">{{venture.descripiton|truncatewords:20}}</p>
-            <p class="card-text">{{venture.farm.tenure_type}}</p>
+            <p class="card-text">{{venture.farm.get_tenure_type_display}}</p>
             <a href="{%url 'details' venture.id%}" class="btn btn-primary"
               >Details</a>
           </div>

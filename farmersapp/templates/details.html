@@ -11,14 +11,14 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8 mx-auto">
-          <h5 class="card-header mx-auto">Joint Venture</h5>
+          <h5 class="card-header">Joint Venture</h5>
           <div class="card" >
             <div class="card-body mx-auto">
              
               <p class="card-text"> Description:</p><p> {{mdetails.descripiton}}</p>
               <p class="card-text">Taken Up: {{mdetails.takenup}}</p>
               <p class="card-text">Period: {{mdetails.period}}</p>
-              <p class="card-text">Period Type: {{mdetails.period_type}}</p>
+              <p class="card-text">Period Type: {{mdetails.get_period_type_display}}</p>
               <p class="card-text">Amount: {{mdetails.amount}}</p>
               <p class="card-text">Negotiable: {{mdetails.negotiable}}</p>
             </div>
@@ -40,7 +40,7 @@
                 <p class="card-text">Phone: {{mdetails.farm.farmer.phone}}</p>
                 <p class="card-text">Address: {{mdetails.farm.farmer.address}}</p>
                 <p class="card-text">Email: {{mdetails.farm.farmer.email}}</p>
-                <p class="card-text">Gender: {{mdetails.farm.farmer.gender}}</p>
+                <p class="card-text">Gender: {{mdetails.farm.farmer.get_gender_display}}</p>
                 <p class="card-text">National ID: {{mdetails.farm.farmer.national_id}}</p>
                 <a href="#" class="btn btn-primary"
                 >Contact</a>
@@ -62,10 +62,10 @@
               <p class="card-text">
                 <p>Plot Number:{{mdetails.farm.plot_number}}</p> 
                 <p>Extend: {{mdetails.farm.extend}}</p>
-                <p>Model: {{mdetails.farm.model}}</p>
-                <p> Tenure: {{mdetails.farm.tenure_type}}</p>
-                <p>Irrigation: {{mdetails.farm.irrigation}}</p>
-                <p> Province: {{mdetails.farm.province}}</p>
+                <p>Model: {{mdetails.farm.get_model_display}}</p>
+                <p> Tenure: {{mdetails.farm.get_tenure_type_display}}</p>
+                <p>Irrigation: {{mdetails.farm.get_irrigation_display}}</p>
+                <p> Province: {{mdetails.farm.get_province_display}}</p>
                 <p>District: {{mdetails.farm.district}}</p>
               </p>
             </div>
