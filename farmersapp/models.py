@@ -20,8 +20,9 @@ class Farmer(models.Model):
     email = models.CharField(max_length=250, null=True,blank=True)
     gender = models.CharField(max_length=10,choices=gender)
     national_id = models.CharField(max_length=30,null =True,unique=True,editable=True,blank=False)
+    
     def __str__(self):
-     return self.name +" "+ self.surname
+     return self.surname
 
 class Farm(models.Model):
     tenure = (

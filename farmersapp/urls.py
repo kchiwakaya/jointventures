@@ -15,5 +15,6 @@ urlpatterns = [
     path("details/<str:pk>/",views.details,name ="details"),
     path("register/",views.register,name ="register"),
     path("login/", views.login_user, name="login"),
+    path("dash/<User>", views.dashboard, name="dash"),
     path("logout/", views.logout_user, name="logout"),
     ]

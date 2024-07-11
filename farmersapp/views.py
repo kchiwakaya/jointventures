@@ -70,11 +70,19 @@ def farmer(request,pk):
 @login_required
 def createFarmer(request):
     form = FarmerForm
+    user = request.user
+    farmer = Farmer.objects.get(user = user)
+    print(farmer)
+    if (farmer.surname is not None): # we have a farmer with all details
+        farm = Farm.objects.get(farmer = farmer)#let's get farmer's farm
+        if (farm is not None):
+            return redirect('createventure',farm.id) #create venture
+        else:
+            return redirect ('createfarm',farmer.id)
+    #go ahead and create farmer        
     if request.method =='POST':
         form = FarmerForm(request.POST)
         if form.is_valid():
-            farmer = form.save(commit= False)
-            farmer.user = request.user
             form.save()
             return redirect('createfarm',farmer.id)
             
@@ -132,13 +140,19 @@ def venturesProv(request,pk):
     print(ventures)
     context = {'mventures': ventures}
     return render(request,'ventures.html',context)
+@login_required    
+def dashboard(request,user):
+    dash_stuff = Venture.objects.get(farm.farmer.user == user)
+    context = {'mdetails': dash_stuff}
+    return render(request,'details.html',context)
 
 def ventures(request):
-    search_query = request.GET.get('province')
+    search_query = request.GET.get('Search_Query')
     print(search_query)
     filtered_data =''
-    if search_query:
-        filtered_data = Venture.objects.filter(farm_province = search_query)
+    if search_query is not None:
+        thequery = Q(farm__farm_name__icontains = search_query) | Q(farm__district__icontains = search_query) | Q(farm__farmer__name__icontains = search_query)
+        filtered_data = Venture.objects.filter(farm__farm_name__icontains = search_query)
     else:
         filtered_data = Venture.objects.all()
     #mventures = Venture.objects.filter(filtered_data)
@@ -149,6 +163,7 @@ def details(request,pk):
     mdetails = Venture.objects.get(id = pk)
     context = {'mdetails': mdetails}
     return render(request,'details.html',context)
+
 @login_required
 def farms(request):
     mfarms = Farm.objects.all()
